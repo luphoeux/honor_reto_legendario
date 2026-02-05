@@ -35,6 +35,13 @@ body {
     font-family: 'HonorSans', sans-serif;
 }
 
+/* Increase font size for large screens (Web/Desktop) */
+@media (min-width: 1280px) {
+    html {
+        font-size: 19px;
+    }
+}
+
 /* Navigation Header */
 .navbar {
     position: fixed;
@@ -620,7 +627,7 @@ footer {
     .section-content { padding: 50px 5%; }
     
     .legal { flex-direction: column; text-align: center; gap: 20px; }
-    .legal-text { border-left: none; padding-left: 0; text-align: center; }
+    .legal-text { border-left: none; padding-left: 0; text-align: center; min-width: auto; }
 
     .invitation-banner {
         border-radius: 20px;
@@ -689,10 +696,14 @@ footer {
 
     /* Extra small screens adjustment */
     @media (max-width: 350px) {
-        .hero-title { font-size: 2rem; }
-        .section-title { font-size: 1.6rem; }
-        .prize-name { font-size: 1.5rem; }
-        .prize-desc, .prize-desc-secondary { font-size: 0.95rem; }
-        .nav-logo { height: 18px; }
+        .hero-title { font-size: 1.8rem; }
+        .section-title { font-size: 1.4rem; }
+        .prize-name { font-size: 1.3rem; }
+        .prize-desc, .prize-desc-secondary { font-size: 0.9rem; }
+        .nav-logo { height: 16px; }
+        .section-content { padding: 30px 10px; }
+        .step { gap: 10px; }
+        .invitation-banner { padding: 15px 10px; }
+        .invitation-text { font-size: 0.8rem; }
     }
 }

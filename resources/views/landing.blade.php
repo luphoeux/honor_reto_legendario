@@ -95,23 +95,33 @@
                 <div class="step">
                     <div class="step-number">1</div>
                     <div class="step-content">
-                        <h3>Registro</h3>
-                        <p>Regístrate en nuestro formulario oficial del 13 al 24 de febrero.</p>
+                        <h3>Registro Único</h3>
+                        <p>Regístrate en nuestro formulario oficial del 13 al 24 de febrero de 2026. ¡Solo se permite un
+                            registro por Cédula de Identidad!</p>
                     </div>
                 </div>
                 <div class="step">
                     <div class="step-number">2</div>
                     <div class="step-content">
                         <h3>Acción en el Live</h3>
-                        <p>Comenta en el Live de lanzamiento (24 de febrero) etiquetando a un amigo y guarda la captura.
-                        </p>
+                        <p>Comenta en el Live de lanzamiento (24 de febrero) en Facebook etiquetando a un amigo y guarda
+                            la captura de pantalla de tu comentario.</p>
                     </div>
                 </div>
                 <div class="step">
                     <div class="step-number">3</div>
                     <div class="step-content">
-                        <h3>Síguenos</h3>
-                        <p>Sigue nuestras cuentas oficiales en Instagram, Facebook y TikTok.</p>
+                        <h3>Sigue nuestras Redes</h3>
+                        <p>Asegúrate de seguir las cuentas oficiales de HONOR Bolivia en Instagram, Facebook y TikTok.
+                            ¡Es un requisito para validar tu premio!</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">*</div>
+                    <div class="step-content">
+                        <h3>Santa Cruz - Invitaciones Especiales</h3>
+                        <p>Si eres de Santa Cruz y eres de los primeros 15 en registrarte, responde "Sí" al uso de HONOR
+                            y tu interés en asistir para ganar una invitación doble al evento en Fexpocruz.</p>
                     </div>
                 </div>
             </div>
