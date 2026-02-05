@@ -193,14 +193,15 @@
                 <div class="social-links-container">
                     <h3 class="info-subtitle">SÍGUENOS EN NUESTRAS REDES</h3>
                     <div class="social-links-grid">
-                        <a href="https://facebook.com/honorBolivia" class="social-link" target="_blank">
+                        <a href="https://www.facebook.com/HonorMobileBO?locale=es_LA" class="social-link"
+                            target="_blank">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                                 stroke-linecap="round" stroke-linejoin="round">
                                 <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
                             </svg>
                             Facebook
                         </a>
-                        <a href="https://instagram.com/honor.bolivia" class="social-link" target="_blank">
+                        <a href="https://www.instagram.com/honor.bolivia/" class="social-link" target="_blank">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                                 stroke-linecap="round" stroke-linejoin="round">
                                 <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
@@ -209,7 +210,7 @@
                             </svg>
                             Instagram
                         </a>
-                        <a href="https://tiktok.com/@honorbolivia" class="social-link" target="_blank">
+                        <a href="https://www.tiktok.com/@honorbolivia" class="social-link" target="_blank">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                                 stroke-linecap="round" stroke-linejoin="round">
                                 <path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"></path>
