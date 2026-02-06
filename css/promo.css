@@ -193,22 +193,6 @@ body {
     }
 }
 
-@media (max-width: 480px) {
-    .countdown-item span {
-        font-size: 2.8rem;
-    }
-    .countdown-item label {
-        font-size: 0.8rem;
-        letter-spacing: 1px;
-    }
-}
-
-@media (max-width: 320px) {
-    .countdown-item span {
-        font-size: 2.2rem;
-    }
-}
-
 /* PARTICIPATION STYLES */
 .participation-grid {
     display: grid;
@@ -786,9 +770,9 @@ body {
         flex: 1;
         display: flex;
         justify-content: center;
-        align-items: center;
-        padding: 120px 5% 60px;
-        background: linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0.8) 100%);
+        align-items: flex-start;
+        padding: 420px 5% 60px;
+        background: linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0.9) 100%);
     }
 
     .hero-content {
@@ -868,6 +852,10 @@ body {
 }
 
 @media (max-width: 350px) {
+    .nav-logo {
+        transform: scale(0.85);
+        transform-origin: left center;
+    }
     .raffle-info-box {
         padding: 15px;
     }
@@ -879,33 +867,47 @@ body {
         font-size: 1.4rem;
         letter-spacing: 2px;
     }
+    .hero-overlay {
+        padding-top: 320px; /* Reduced from 420px for very small screens to maintain layout */
+    }
     .hero-content {
-        margin-top: 480px;
+        margin-top: 0;
     }
     .countdown-item span {
-        font-size: 2.2rem;
+        font-size: 2.1rem;
+    }
+    .countdown-item label {
+        font-size: 0.7rem;
+        letter-spacing: 0;
     }
     .countdown-grid {
-        padding: 20px 10px;
-        gap: 15px;
-    }
-    .section-title {
-        font-size: 1.5rem;
-    }
-    .participation-card {
-        padding: 40px 20px 30px;
-    }
-    .card-title {
-        font-size: 1.3rem;
-    }
-    .prize-bottom-label {
-        font-size: 1rem;
-    }
-    .social-links-v2 {
+        padding: 15px 5px;
         gap: 10px;
     }
+    .section-title {
+        font-size: 1.4rem;
+    }
+    .participation-card {
+        padding: 35px 15px 25px;
+    }
+    .card-title {
+        font-size: 1.2rem;
+    }
+    .prize-bottom-label {
+        font-size: 0.95rem;
+        padding: 15px 5px;
+    }
+    .social-links-v2 {
+        gap: 8px;
+    }
     .social-box-v2 {
-        width: 45px;
-        height: 45px;
+        width: 40px;
+        height: 40px;
+    }
+    .special-banner {
+        padding: 25px 15px;
+    }
+    .banner-title {
+        font-size: 1.1rem;
     }
 }
