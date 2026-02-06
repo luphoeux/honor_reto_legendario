@@ -6,219 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HONOR - Próximamente</title>
 
-    <style>
-        @font-face {
-            font-family: 'HonorSans';
-            src: url("assets/fonts/HONORSansWorld-Regular.ttf") format('truetype');
-            font-weight: normal;
-        }
-
-        @font-face {
-            font-family: 'HonorSans';
-            src: url("assets/fonts/HONORSansWorld-Bold.ttf") format('truetype');
-            font-weight: bold;
-        }
-
-        :root {
-            --bg-color: #000000;
-            --accent-color: rgba(255, 255, 255, 0.15); 
-            --text-color: #ffffff; /* Restore full white visibility */
-            --dot-base: rgba(255, 255, 255, 0.03); 
-            --dot-highlight: rgba(255, 255, 255, 0.2);
-            --grid-spacing: 40px;
-            --x: -1000px;
-            --y: 50%;
-            --shadow-alpha: 0;
-        }
-
-        body, html {
-            margin: 0;
-            padding: 0;
-            width: 100%;
-            height: 100%;
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            font-family: 'HonorSans', sans-serif;
-            overflow: hidden;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        /* LAYER 0: BASE DOTS */
-        .dot-background {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            background: radial-gradient(var(--dot-base) 1px, transparent 1px) -20px -20px / var(--grid-spacing) var(--grid-spacing);
-            z-index: 0;
-        }
-
-        /* LAYER 1: HIGHLIGHTED DOTS */
-        .dot-highlight-layer {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            background: radial-gradient(var(--dot-highlight) 1.5px, transparent 1.5px) -20px -20px / var(--grid-spacing) var(--grid-spacing);
-            z-index: 1;
-            mask-image: radial-gradient(circle 350px at var(--x) var(--y), black 0%, transparent 100%);
-            -webkit-mask-image: radial-gradient(circle 350px at var(--x) var(--y), black 0%, transparent 100%);
-        }
-
-        /* LAYER 2: FUTURISTIC CONNECTIONS */
-        #connector-canvas {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 2;
-            mask-image: radial-gradient(circle 350px at var(--x) var(--y), black 0%, transparent 100%);
-            -webkit-mask-image: radial-gradient(circle 350px at var(--x) var(--y), black 0%, transparent 100%);
-        }
-
-        /* ATMOSPHERIC "CINEMATIC" GLOW */
-        .glow-layer {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 5;
-            background: radial-gradient(circle 500px at var(--x) var(--y), rgba(255, 255, 255, 0.05) 0%, transparent 100%);
-        }
-
-        .container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            z-index: 10;
-            position: relative;
-            width: 100%;
-            pointer-events: none;
-            padding-top: 80px;
-        }
-
-        /* LOGO - ABSOLUTE BLACK BY DEFAULT (HIDDEN) */
-        .logo {
-            width: 50vw;
-            max-width: 1000px;
-            margin-bottom: 60px;
-            display: flex;
-            justify-content: center;
-            position: relative;
-        }
-
-        .logo svg {
-            width: 100%;
-            height: auto;
-            fill: #000; /* Fully black */
-        }
-
-        /* REVEAL LAYER - SUBTLE CINEMATIC SHINE */
-        .logo-reveal {
-            position: absolute;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 97 20'%3E%3Cpath d='M27.56 0c-1.85 0-3.67.56-5.21 1.61C20.8 2.66 19.6 4.15 18.89 5.89c-.71 1.74-.9 3.66-.53 5.51.36 1.85 1.25 3.55 2.57 4.89 1.31 1.33 2.99 2.24 4.81 2.61 1.82.37 3.71.18 5.42-.54a10.8 10.8 0 0 0 5.38-7.92c0-1.89-.55-3.73-1.58-5.3a10.2 10.2 0 0 0-4.17-5.35C30.06 0 27.57 0zM27.56 15.77a6.2 6.2 0 1 1 0-12.41 6.2 6.2 0 0 1 0 12.41zM10.52.24V7.78H3.26V.24H0V18.84h3.26v-7.75h7.26v7.75h3.26V.24h-3.26zM51.87.24v11.6L43.96.24h-2.6v18.6h3.26V7.18l7.95 11.66h2.56V.24h-3.26zM91.44 12.06a8 8 0 0 0 4.07-6.69 8 8 0 0 0-2-5.37A7.3 7.3 0 0 0 89.64.24h-6.93v18.6h3.26v-8.28l6.79 8.28h4.23l-5.56-6.78zM85.97 9.02V3.56H89.6a2.7 2.7 0 1 1 0 5.46h-3.63zM68.92 0a10.7 10.7 0 0 0-5.22 1.61 10.8 10.8 0 0 0-3.48 4.28 10.9 10.9 0 0 0-.53 5.51c.36 1.85 1.25 3.55 2.57 4.89 1.31 1.33 2.99 2.24 4.81 2.61 1.82.37 3.71.18 5.42-.54a10.8 10.8 0 0 0 5.38-7.92c0-1.89-.55-3.73-1.58-5.3a10.2 10.2 0 0 0-4.17-5.35C71.41 0 68.92 0zm0 15.77a6.2 6.2 0 1 1 0-12.41 6.2 6.2 0 0 1 0 12.41z' fill='%23333333'/%3E%3C/svg%3E") no-repeat center;
-            background-size: contain;
-            z-index: 2;
-            mask-image: radial-gradient(circle 220px at var(--x) var(--y), black 0%, transparent 100%);
-            -webkit-mask-image: radial-gradient(circle 220px at var(--x) var(--y), black 0%, transparent 100%);
-            opacity: 0.7; /* Very slight reveal */
-        }
-
-        h1 {
-            font-size: clamp(1.2rem, 3.5vw, 2.2rem);
-            font-weight: bold;
-            letter-spacing: 0.2em;
-            margin: 20px 0 12px 0;
-            text-transform: uppercase;
-            color: #fff; /* Visible h1 */
-            opacity: 0.9;
-        }
-
-        p {
-            font-size: clamp(0.8rem, 1.8vw, 1rem);
-            margin: 0 0 80px 0;
-            letter-spacing: 0.1em;
-            color: #fff; /* Visible p */
-            opacity: 0.5;
-        }
-
-        .promo-card {
-            background: var(--card-bg);
-            border: 1px solid var(--card-border);
-            border-radius: 24px;
-            padding: 22px 40px;
-            backdrop-filter: blur(40px);
-            -webkit-backdrop-filter: blur(40px);
-            display: inline-flex;
-            align-items: center;
-            gap: 24px;
-            text-decoration: none;
-            color: inherit;
-            transition: all 0.7s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        .promo-card:hover {
-            background: rgba(255, 255, 255, 0.08);
-            transform: translateY(-8px) scale(1.02);
-            border-color: rgba(255, 255, 255, 0.2);
-            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.6);
-        }
-
-        .promo-card .icon {
-            background: #ffffff;
-            color: #000000;
-            width: 48px;
-            height: 48px;
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-weight: bold;
-            font-size: 1.3rem;
-            flex-shrink: 0;
-        }
-
-        .promo-card .title {
-            font-weight: bold;
-            display: block;
-            font-size: 1rem;
-            margin-bottom: 2px;
-        }
-
-        .promo-card .subtitle {
-            font-size: 0.9rem;
-            opacity: 0.5;
-        }
-
-        @keyframes float-text {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
-        }
-
-        @media (max-width: 1024px) {
-            .logo { width: 60vw; }
-        }
-
-        @media (max-width: 768px) {
-            .logo { width: 85vw; margin-bottom: 40px; }
-            h1 { font-size: 1.5rem; letter-spacing: 0.1em; }
-            p { margin-bottom: 60px; }
-            .container { padding-top: 40px; }
-        }
-    </style>
+    <link rel="stylesheet" href="css/home.css">
 </head>
 
 <body>
@@ -234,11 +22,11 @@
             <div class="logo-reveal"></div>
             <svg width="97" height="20" viewBox="0 0 97 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <g clip-path="url(#clip0_16_56)">
-                <path d="M27.5656 0C25.7084 0 23.8929 0.559569 22.3488 1.60795C20.8046 2.65632 19.601 4.14642 18.8903 5.88981C18.1796 7.63319 17.9937 9.55157 18.356 11.4023C18.7183 13.2531 19.6126 14.9531 20.9258 16.2875C22.239 17.6218 23.9122 18.5305 25.7337 18.8986C27.5552 19.2668 29.4432 19.0778 31.159 18.3557C32.8748 17.6336 34.3413 16.4107 35.3731 14.8417C36.4049 13.2727 36.9556 11.428 36.9556 9.54098C36.9556 7.01056 35.9663 4.58377 34.2053 2.79449C32.4444 1.00521 30.056 0 27.5656 0ZM27.5656 15.7674C26.3527 15.7685 25.1667 15.4041 24.1577 14.7202C23.1487 14.0363 22.362 13.0636 21.8972 11.9253C21.4323 10.787 21.3103 9.53413 21.5464 8.3253C21.7826 7.11647 22.3663 6.00598 23.2238 5.13433C24.0812 4.26268 25.1739 3.66905 26.3635 3.42854C27.5531 3.18804 28.7861 3.31148 29.9067 3.78323C31.0272 4.25499 31.9848 5.05386 32.6584 6.07877C33.332 7.10368 33.6912 8.30857 33.6906 9.54098C33.6899 11.1916 33.0444 12.7744 31.896 13.9418C30.7476 15.1093 29.1901 15.7659 27.5656 15.7674Z" fill="currentColor"/>
-                <path d="M10.5164 0.243378V7.77939H3.26213V0.243378H0V18.8386H3.26213V11.094H10.5164V18.8386H13.7757V0.243378H10.5164Z" fill="currentColor"/>
-                <path d="M51.869 0.243378V11.8473L43.956 0.243378H41.3555V18.8386H44.6176V7.17674L52.5705 18.8386H55.1311V0.243378H51.869Z" fill="currentColor"/>
-                <path d="M91.4366 12.0588C92.7887 11.6201 93.9422 10.7053 94.6893 9.47908C95.4365 8.25288 95.7282 6.79592 95.5118 5.37059C95.2955 3.94526 94.5854 2.64525 93.5094 1.70471C92.4335 0.764176 91.0623 0.244923 89.643 0.240479H82.7109V18.8386H85.9731V10.5608L92.7654 18.8386H96.9942L91.4366 12.0588ZM85.9731 9.02235V3.55505H89.603C90.3177 3.55505 91.0031 3.84352 91.5085 4.35699C92.0138 4.87047 92.2977 5.56689 92.2977 6.29305C92.2977 7.01921 92.0138 7.71563 91.5085 8.22911C91.0031 8.74258 90.3177 9.03105 89.603 9.03105L85.9731 9.02235Z" fill="currentColor"/>
-                <path d="M68.921 0C67.0639 0 65.2484 0.559569 63.7042 1.60795C62.16 2.65632 60.9565 4.14642 60.2458 5.88981C59.5351 7.63319 59.3491 9.55157 59.7114 11.4023C60.0738 13.2531 60.9681 14.9531 62.2813 16.2875C63.5945 17.6218 65.2677 18.5305 67.0891 18.8986C68.9106 19.2668 70.7987 19.0778 72.5145 18.3557C74.2303 17.6336 75.6968 16.4107 76.7286 14.8417C77.7604 13.2727 78.3111 11.428 78.3111 9.54098C78.3111 7.01056 77.3218 4.58377 75.5608 2.79449C73.7998 1.00521 71.4114 0 68.921 0ZM68.921 15.7674C67.7084 15.7674 66.5229 15.402 65.5147 14.7174C64.5064 14.0328 63.7206 13.0597 63.2567 11.9213C62.7928 10.7828 62.6715 9.53019 62.9083 8.32174C63.1451 7.1133 63.7293 6.00334 64.587 5.13228C65.4446 4.26121 66.5373 3.66815 67.7267 3.42812C68.9162 3.18809 70.149 3.31186 71.2692 3.78379C72.3894 4.25571 73.3467 5.05459 74.02 6.07937C74.6933 7.10416 75.0524 8.30882 75.0518 9.54098C75.051 11.1926 74.4048 12.7763 73.2551 13.9439C72.1055 15.1115 70.5465 15.7674 68.921 15.7674Z" fill="currentColor"/>
+                <path d="M27.5656 0C25.7084 0 23.8929 0.559569 22.3488 1.60795C20.8046 2.65632 19.601 4.14642 18.8903 5.88981C18.1796 7.63319 17.9937 9.55157 18.356 11.4023C18.7183 13.2531 19.6126 14.9531 20.9258 16.2875C22.239 17.6218 23.9122 18.5305 25.7337 18.8986C27.5552 19.2668 29.4432 19.0778 31.159 18.3557C32.8748 17.6336 34.3413 16.4107 35.3731 14.8417C36.4049 13.2727 36.9556 11.428 36.9556 9.54098C36.9556 7.01056 35.9663 4.58377 34.2053 2.79449C32.4444 1.00521 30.056 0 27.5656 0ZM27.5656 15.7674C26.3527 15.7685 25.1667 15.4041 24.1577 14.7202C23.1487 14.0363 22.362 13.0636 21.8972 11.9253C21.4323 10.787 21.3103 9.53413 21.5464 8.3253C21.7826 7.11647 22.3663 6.00598 23.2238 5.13433C24.0812 4.26268 25.1739 3.66905 26.3635 3.42854C27.5531 3.18804 28.7861 3.31148 29.9067 3.78323C31.0272 4.25499 31.9848 5.05386 32.6584 6.07877C33.332 7.10368 33.6912 8.30857 33.6906 9.54098C33.6899 11.1916 33.0444 12.7744 31.896 13.9418C30.7476 15.1093 29.1901 15.7659 27.5656 15.7674Z" fill="black" stroke="black" stroke-width="0.4"/>
+                <path d="M10.5164 0.243378V7.77939H3.26213V0.243378H0V18.8386H3.26213V11.094H10.5164V18.8386H13.7757V0.243378H10.5164Z" fill="black" stroke="black" stroke-width="0.4"/>
+                <path d="M51.869 0.243378V11.8473L43.956 0.243378H41.3555V18.8386H44.6176V7.17674L52.5705 18.8386H55.1311V0.243378H51.869Z" fill="black" stroke="black" stroke-width="0.4"/>
+                <path d="M91.4366 12.0588C92.7887 11.6201 93.9422 10.7053 94.6893 9.47908C95.4365 8.25288 95.7282 6.79592 95.5118 5.37059C95.2955 3.94526 94.5854 2.64525 93.5094 1.70471C92.4335 0.764176 91.0623 0.244923 89.643 0.240479H82.7109V18.8386H85.9731V10.5608L92.7654 18.8386H96.9942L91.4366 12.0588ZM85.9731 9.02235V3.55505H89.603C90.3177 3.55505 91.0031 3.84352 91.5085 4.35699C92.0138 4.87047 92.2977 5.56689 92.2977 6.29305C92.2977 7.01921 92.0138 7.71563 91.5085 8.22911C91.0031 8.74258 90.3177 9.03105 89.603 9.03105L85.9731 9.02235Z" fill="black" stroke="black" stroke-width="0.4"/>
+                <path d="M68.921 0C67.0639 0 65.2484 0.559569 63.7042 1.60795C62.16 2.65632 60.9565 4.14642 60.2458 5.88981C59.5351 7.63319 59.3491 9.55157 59.7114 11.4023C60.0738 13.2531 60.9681 14.9531 62.2813 16.2875C63.5945 17.6218 65.2677 18.5305 67.0891 18.8986C68.9106 19.2668 70.7987 19.0778 72.5145 18.3557C74.2303 17.6336 75.6968 16.4107 76.7286 14.8417C77.7604 13.2727 78.3111 11.428 78.3111 9.54098C78.3111 7.01056 77.3218 4.58377 75.5608 2.79449C73.7998 1.00521 71.4114 0 68.921 0ZM68.921 15.7674C67.7084 15.7674 66.5229 15.402 65.5147 14.7174C64.5064 14.0328 63.7206 13.0597 63.2567 11.9213C62.7928 10.7828 62.6715 9.53019 62.9083 8.32174C63.1451 7.1133 63.7293 6.00334 64.587 5.13228C65.4446 4.26121 66.5373 3.66815 67.7267 3.42812C68.9162 3.18809 70.149 3.31186 71.2692 3.78379C72.3894 4.25571 73.3467 5.05459 74.02 6.07937C74.6933 7.10416 75.0524 8.30882 75.0518 9.54098C75.051 11.1926 74.4048 12.7763 73.2551 13.9439C72.1055 15.1115 70.5465 15.7674 68.921 15.7674Z" fill="black" stroke="black" stroke-width="0.4"/>
                 </g>
                 <defs>
                 <clipPath id="clip0_16_56">
@@ -252,7 +40,9 @@
         <p>Nuestro sitio web oficial estará disponible muy pronto.</p>
 
         <a href="promo.html" class="promo-card">
-            <div class="icon">!</div>
+            <div class="icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"></path><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"></path><path d="M4 22h16"></path><path d="M10 14.66V17c0 .55-.45 1-1 1H7.5"></path><path d="M14 14.66V17c0 .55.45 1 1 1h1.5"></path><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"></path></svg>
+            </div>
             <div class="content">
                 <span class="title">Reto Legendario 2026</span>
                 <span class="subtitle">Ver promoción actual &rarr;</span>
@@ -260,85 +50,7 @@
         </a>
     </div>
 
-    <script>
-        const canvas = document.getElementById('connector-canvas');
-        const ctx = canvas.getContext('2d');
-        
-        const gridSize = 40;
-        let pulses = [];
-
-        function initCanvas() {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-            pulses = [];
-        }
-
-        function createPulse() {
-            if (pulses.length > 50) return;
-            const cols = Math.floor(canvas.width / gridSize);
-            const rows = Math.floor(canvas.height / gridSize);
-            const startX = Math.floor(Math.random() * (cols + 1)) * gridSize;
-            const startY = Math.floor(Math.random() * (rows + 1)) * gridSize;
-            const direction = Math.random() > 0.5 ? 'h' : 'v';
-            const length = (Math.floor(Math.random() * 5) + 3) * gridSize;
-            pulses.push({ startX, startY, progress: 0, speed: 0.008 + Math.random() * 0.015, direction, length });
-        }
-
-        function drawFuturisticGrid() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            pulses.forEach((p, index) => {
-                p.progress += p.speed;
-                if (p.progress > 1.3) { pulses.splice(index, 1); return; }
-                const alpha = Math.sin(Math.min(p.progress * Math.PI, Math.PI)) * 0.2;
-                ctx.strokeStyle = `rgba(255, 255, 255, ${alpha})`;
-                ctx.lineWidth = 1.5;
-                ctx.beginPath();
-                const tailLength = gridSize * 2.5;
-                if (p.direction === 'h') {
-                    ctx.moveTo(p.startX + (p.progress * p.length) - tailLength, p.startY);
-                    ctx.lineTo(p.startX + (p.progress * p.length), p.startY);
-                } else {
-                    ctx.moveTo(p.startX, p.startY + (p.progress * p.length) - tailLength);
-                    ctx.lineTo(p.startX, p.startY + (p.progress * p.length));
-                }
-                ctx.stroke();
-            });
-            if (Math.random() > 0.85) createPulse();
-        }
-
-        const cycleTime = 10000;
-        const activeTime = 6600;
-
-        function updateScanner() {
-            const now = Date.now();
-            const elapsed = now % cycleTime;
-            
-            let currentX = -2000;
-            const currentY = window.innerHeight / 2;
-            let shadowAlpha = 0;
-
-            if (elapsed < activeTime) {
-                const progress = elapsed / activeTime;
-                const startX = -window.innerWidth * 0.4;
-                const endX = window.innerWidth * 1.4;
-                currentX = startX + (endX - startX) * progress;
-                
-                shadowAlpha = Math.max(0, 1 - Math.abs(progress - 0.5) * 4);
-                shadowAlpha = Math.pow(shadowAlpha, 2); 
-            }
-
-            document.documentElement.style.setProperty('--x', `${currentX}px`);
-            document.documentElement.style.setProperty('--y', `${currentY}px`);
-            document.documentElement.style.setProperty('--shadow-alpha', shadowAlpha);
-            
-            drawFuturisticGrid();
-            requestAnimationFrame(updateScanner);
-        }
-
-        window.addEventListener('resize', initCanvas);
-        initCanvas();
-        updateScanner();
-    </script>
+    <script src="js/home.js"></script>
 </body>
 
 </html>
